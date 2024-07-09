@@ -17,7 +17,9 @@ it('check if return error when no ticket found',async()=>{
 
 it('check if return error when ticket is reserved',async()=>{
     // Create a new ticket
+    const ticketId = new mongoose.Types.ObjectId();
     const ticket = Ticket.build({
+        id:ticketId.toString(),
         title:'the eras tour',
         price:100
     })
@@ -45,7 +47,9 @@ it('check if return error when ticket is reserved',async()=>{
 
 it('check if return order when successfully created',async()=>{
     // Create a new ticket
+    const ticketId = new mongoose.Types.ObjectId().toString();
     const ticket = Ticket.build({
+        id:ticketId,
         title:'the eras tour',
         price:100
     })
@@ -62,6 +66,7 @@ it('check if return order when successfully created',async()=>{
 
 it("check if emit order created event",async()=>{
     const ticket = Ticket.build({
+        id: new mongoose.Types.ObjectId().toString(),
         title:'the eras tour',
         price:100
     })

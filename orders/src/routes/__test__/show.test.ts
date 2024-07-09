@@ -7,6 +7,7 @@ it('check if return all orders created by current user',async()=>{
     const cookie = global.signin();
     // Create a new ticket
     const ticket1 = Ticket.build({
+        id: new mongoose.Types.ObjectId().toString(),
         title:'the eras tour',
         price:100
     })
@@ -22,6 +23,7 @@ it('check if return all orders created by current user',async()=>{
     const orderId_1 = res.body.id;
 
     const ticket2 = Ticket.build({
+        id: new mongoose.Types.ObjectId().toString(),
         title:'the eras tour',
         price:100
     })
@@ -49,6 +51,7 @@ it('Check if return 404 error in case the request order does not exist',async()=
     const cookie = global.signin();
     // Create a new ticket
     const ticket1 = Ticket.build({
+        id: new mongoose.Types.ObjectId().toString(),
         title:'the eras tour',
         price:100
     })
