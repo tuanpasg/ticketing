@@ -64,13 +64,13 @@ jobs:
           docker push $GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/payments:latest
           docker push $GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/tickets:latest
 
-      - name: Configure kubectl
-        run: |
-          echo ${{ secrets.GCP_SA_KEY }} > ${HOME}/gcloud-service-key.json
-          gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-          gcloud --quiet config set project ${{ secrets.GCP_PROJECT }}
-          gcloud --quiet config set compute/region ${{ secrets.GCP_REGION }}
-          gcloud --quiet container clusters get-credentials ${{ secrets.GKE_CLUSTER }}
+      # - name: Configure kubectl
+      #   run: |
+      #     echo ${{ secrets.GCP_SA_KEY }} > ${HOME}/gcloud-service-key.json
+      #     gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+      #     gcloud --quiet config set project ${{ secrets.GCP_PROJECT }}
+      #     gcloud --quiet config set compute/region ${{ secrets.GCP_REGION }}
+      #     gcloud --quiet container clusters get-credentials ${{ secrets.GKE_CLUSTER }}
 
       - name: Deploy to GKE
         run: |
@@ -87,9 +87,9 @@ jobs:
           kubectl apply -f infra/k8s/payments-mongo-depl.yaml
           kubectl apply -f infra/k8s/tickets-depl.yaml
           kubectl apply -f infra/k8s/tickets-mongo-depl.yaml
-          kubectl set image deployment/auth auth=gcr.io/${{ secrets.GCP_PROJECT }}/auth:latest
-          kubectl set image deployment/client client=gcr.io/${{ secrets.GCP_PROJECT }}/client:latest
-          kubectl set image deployment/expiration expiration=gcr.io/${{ secrets.GCP_PROJECT }}/expiration:latest
-          kubectl set image deployment/orders orders=gcr.io/${{ secrets.GCP_PROJECT }}/orders:latest
-          kubectl set image deployment/payments payments=gcr.io/${{ secrets.GCP_PROJECT }}/payments:latest
-          kubectl set image deployment/tickets tickets=gcr.io/${{ secrets.GCP_PROJECT }}/tickets:latest
+          kubectl set image deployment/auth auth=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/auth:latest
+          kubectl set image deployment/client client=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/client:latest
+          kubectl set image deployment/expiration expiration=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/expiration:latest
+          kubectl set image deployment/orders orders=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/orders:latest
+          kubectl set image deployment/payments payments=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/payments:latest
+          kubectl set image deployment/tickets tickets=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/tickets:latest
