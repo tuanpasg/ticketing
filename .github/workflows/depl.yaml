@@ -83,9 +83,9 @@ jobs:
           kubectl apply -f infra/k8s/prod/payments-mongo-depl.yaml
           kubectl apply -f infra/k8s/prod/tickets-depl.yaml
           kubectl apply -f infra/k8s/prod/tickets-mongo-depl.yaml
-          kubectl set image deployment/auth auth=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/auth:latest
-          kubectl set image deployment/client client=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/client:latest
-          kubectl set image deployment/expiration expiration=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/expiration:latest
-          kubectl set image deployment/orders orders=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/orders:latest
-          kubectl set image deployment/payments payments=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/payments:latest
-          kubectl set image deployment/tickets tickets=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/tickets:latest
+          kubectl set image deployment/auth-depl auth=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/auth:latest
+          kubectl set image deployment/client-depl client=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/client:latest
+          kubectl set image deployment/expiration-depl expiration=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/expiration:latest
+          kubectl set image deployment/orders-depl orders=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/orders:latest
+          kubectl set image deployment/payments-depl payments=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/payments:latest
+          kubectl set image deployment/tickets-depl tickets=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/tickets:latest
