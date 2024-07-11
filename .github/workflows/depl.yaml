@@ -43,6 +43,10 @@ jobs:
           docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/payments:latest ./payments
           docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/tickets:latest ./tickets
 
+      - name: Docker configuration
+        run: |-
+          echo ${{steps.auth.outputs.access_token}} | docker login -u oauth2accesstoken --password-stdin https://$GAR_LOCATION-docker.pkg.dev
+
       - name: Push Docker images to Google Container Registry
         run: |
           docker push gcr.io/${{ secrets.GCP_PROJECT }}/auth:latest
