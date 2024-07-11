@@ -10,22 +10,25 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      # - name: Set up Cloud SDK
-      #   uses: google-github-actions/setup-gcloud@v1
-      #   with:
-      #     project_id: ${{ secrets.GCP_PROJECT }}
-      #     service_account_key: ${{ secrets.GCP_SA_KEY }}
       
       - id: 'auth'
         name: Set up Cloud SDK
         uses: 'google-github-actions/auth@v2'
         with:
+          token_format: 'access_token'
           credentials_json: '${{ secrets.GCP_SA_KEY }}'
+          service_account: 'github-actions-deployer@ticketing-429002.iam.gserviceaccount.com'
+          
+      - name: Access Token Verification
+        run: echo ${{steps.auth.outputs.access_token}}
 
       - name: Docker configuration
         run: |-
