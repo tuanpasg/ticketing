@@ -8,7 +8,6 @@ const Home=({tickets,currentUser}) => {
 
   return (
     <div>
-      {/* <h1>{currentUser?"You are signed in":"You are not signed in"}</h1> */}
       <div className="w-50">
       {tickets.map((ticket)=>
       <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
