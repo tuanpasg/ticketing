@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: payments
-          image: payments
+          image: asia-southeast1-docker.pkg.dev/ticketing-429002/ticketing-docker-hub/payments
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

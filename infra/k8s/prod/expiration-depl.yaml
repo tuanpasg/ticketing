@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: expiration
-          image: expiration
+          image: asia-southeast1-docker.pkg.dev/ticketing-429002/ticketing-docker-hub/expiration
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
