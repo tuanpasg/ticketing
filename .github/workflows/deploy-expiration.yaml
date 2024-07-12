@@ -1,0 +1,57 @@
+name: Build and Deploy to GKE
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "expiration/**"
+
+env:
+  GAR_LOCATION: asia-southeast1
+  REPO_NAME: ticketing-docker-hub
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: "read"
+      id-token: "write"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - id: "auth"
+        name: Set up Cloud SDK
+        uses: "google-github-actions/auth@v2"
+        with:
+          token_format: "access_token"
+          credentials_json: "${{ secrets.GCP_SA_KEY }}"
+          service_account: "github-actions-deployer@ticketing-429002.iam.gserviceaccount.com"
+
+      - name: Access Token Verification
+        run: echo ${{steps.auth.outputs.access_token}}
+
+      - name: Docker configuration
+        run: |-
+          echo ${{steps.auth.outputs.access_token}} | docker login -u oauth2accesstoken --password-stdin https://$GAR_LOCATION-docker.pkg.dev
+
+      # Get the GKE credentials so we can deploy to the cluster
+      - name: Set up GKE credentials
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: ${{ secrets.GKE_CLUSTER }}
+          location: ${{ secrets.GKE_ZONE }}
+
+      - name: Build Docker images
+        run: |
+          docker build -t $GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/expiration:latest ./auth
+
+      - name: Push Docker images to Google Container Registry
+        run: |
+          docker push $GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/expiration:latest
+
+      - name: Deploy to GKE
+        run: kubectl rollout restart deployment expiration-depl
