@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: $GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/auth:latest
+          image: asia-southeast1-docker.pkg.dev/ticketing-429002/ticketing-docker-hub/auth
           env:
             - name: MONGO_URI
               value: "mongodb://auth-mongo-srv:27017/auth"
