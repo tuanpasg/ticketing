@@ -53,5 +53,5 @@ jobs:
         run: |
           docker push $GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/auth:latest
 
-      - name: Deploy to GKE
+      - name: Restart deployment on GKE
         run: kubectl rollout restart deployment auth-depl
