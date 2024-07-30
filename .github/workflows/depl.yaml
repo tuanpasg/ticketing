@@ -70,19 +70,7 @@ jobs:
 
       - name: Deploy to GKE
         run:
-          kubectl apply -f infra/k8s/prod/auth-depl.yaml
-          kubectl apply -f infra/k8s/prod/auth-mongo-depl.yaml
-          kubectl apply -f infra/k8s/prod/client-depl.yaml
-          kubectl apply -f infra/k8s/prod/expiration-depl.yaml
-          kubectl apply -f infra/k8s/prod/expiration-redis-depl.yaml
-          kubectl apply -f infra/k8s/prod/ingress-srv.yaml
-          kubectl apply -f infra/k8s/prod/nats-depl.yaml
-          kubectl apply -f infra/k8s/prod/orders-depl.yaml
-          kubectl apply -f infra/k8s/prod/orders-mongo-depl.yaml
-          kubectl apply -f infra/k8s/prod/payments-depl.yaml
-          kubectl apply -f infra/k8s/prod/payments-mongo-depl.yaml
-          kubectl apply -f infra/k8s/prod/tickets-depl.yaml
-          kubectl apply -f infra/k8s/prod/tickets-mongo-depl.yaml
+          kubectl apply -f infra/k8s/prod/*
           # # kubectl set image deployment/auth-depl auth=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/auth:latest
           # # kubectl set image deployment/client-depl client=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/client:latest
           # # kubectl set image deployment/expiration-depl expiration=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/expiration:latest
