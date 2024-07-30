@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "infra/**"
+
 env:
   GAR_LOCATION: asia-southeast1 # TODO: update region of the Artifact Registry
   REPO_NAME: ticketing-docker-hub
