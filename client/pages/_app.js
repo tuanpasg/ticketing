@@ -6,9 +6,7 @@ import Link from "next/link";
 import { Header } from "./header";
 
 function App({ Component, pageProps, currentUser}) {
-  // console.log(pageProps);
-  // console.log(currentUser);
-  console.log("Rendering ...");
+  console.log("Rendering ...")
   return <>
   <Header currentUser={currentUser}/>
   <Component currentUser={currentUser} {...pageProps} />;
