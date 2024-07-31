@@ -54,4 +54,4 @@ jobs:
           docker push $GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/auth:latest
 
       - name: Update to the latest image
-        run: kubectl set image deployment/auth-depl auth=$GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/auth:latest
+        run: kubectl rollout restart deployment/auth-depl

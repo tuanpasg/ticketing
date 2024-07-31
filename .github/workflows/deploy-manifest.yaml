@@ -46,5 +46,4 @@ jobs:
           location: ${{ secrets.GKE_ZONE }}
 
       - name: Deploy to GKE
-        run: |
-          kubectl apply -f infra/k8s/prod/
+        run: kubectl apply -f infra/k8s/prod/

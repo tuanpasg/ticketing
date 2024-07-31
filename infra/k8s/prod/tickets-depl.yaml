@@ -15,6 +15,13 @@ spec:
       containers:
         - name: tickets
           image: asia-southeast1-docker.pkg.dev/ticketing-429002/ticketing-docker-hub/tickets
+          resources:
+            requests:
+              memory: "500M"
+              cpu: "250m"
+            limits:
+              memory: "1G"
+              cpu: "500m"
           env:
             - name: MONGO_URI
               value: "mongodb://tickets-mongo-srv:27017/tickets"
@@ -23,6 +30,7 @@ spec:
                 secretKeyRef:
                   name: jwt-secret
                   key: JWT_KEY
+
 ---
 apiVersion: v1
 kind: Service
