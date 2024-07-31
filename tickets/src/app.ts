@@ -21,6 +21,11 @@ app.use(cookieSession({
     secure: false
 }));
 
+app.use((req, res, next) => {
+    console.log(`Received request: ${req.method} ${req.url}`);
+    next();
+});
+
 app.use(currentUser);
 app.use(newTicketRoute);
 app.use(updateTicketRoute);
