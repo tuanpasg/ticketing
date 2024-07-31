@@ -31,6 +31,7 @@ const start = async () => {
     console.error(err);
   }
 
+  console.log("Expiration Service starts up successfully!");
 };
 
 start();

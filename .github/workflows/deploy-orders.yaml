@@ -47,7 +47,7 @@ jobs:
 
       - name: Build Docker images
         run: |
-          docker build -t $GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/orders:latest ./auth
+          docker build -t $GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/orders:latest ./orders
 
       - name: Push Docker images to Google Container Registry
         run: |
