@@ -1,11 +1,13 @@
 import { Ticket } from "../../models/ticket"
 import request from "supertest"
 import { app } from "../../app"
+import mongoose from "mongoose"
 
 it('check if return all orders created by current user',async()=>{
     const cookie = global.signin();
     // Create a new ticket
     const ticket1 = Ticket.build({
+        id:  new mongoose.Types.ObjectId().toString(),
         title:'the eras tour',
         price:100
     })
@@ -19,6 +21,7 @@ it('check if return all orders created by current user',async()=>{
     .expect(201);
 
     const ticket2 = Ticket.build({
+        id: new mongoose.Types.ObjectId().toString(),
         title:'the eras tour',
         price:100
     })

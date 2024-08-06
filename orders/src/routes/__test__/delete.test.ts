@@ -2,11 +2,13 @@ import { OrderStatus } from "@aaron-sg-org/common";
 import { app } from "../../app";
 import { Ticket } from "../../models/ticket";
 import request from "supertest";
+import mongoose from "mongoose";
 
 it('check if return successful when successfully deleted',async()=>{
     // Create a new ticket
     const cookie = global.signin();
     const ticket = Ticket.build({
+        id: new mongoose.Types.ObjectId().toString(),
         title:'the eras tour',
         price:100
     })
