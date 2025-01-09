@@ -29,7 +29,7 @@ jobs:
         with:
           token_format: "access_token"
           credentials_json: "${{ secrets.GCP_SA_KEY }}"
-          service_account: "github-actions-deployer@ticketing-429002.iam.gserviceaccount.com"
+          service_account: "github-action-deployer@ticketing-447009.iam.gserviceaccount.com"
 
       - name: Access Token Verification
         run: echo ${{steps.auth.outputs.access_token}}
