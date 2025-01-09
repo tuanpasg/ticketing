@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - "auth/**"
+    paths:
+      - "auth/**"
 
 env:
   GAR_LOCATION: asia-southeast1
@@ -54,6 +54,5 @@ jobs:
           docker push $GAR_LOCATION-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/$REPO_NAME/auth:latest
 
       - name: Update to the latest image
-        # run: kubectl rollout restart deployment/auth-depl
         run: |
           kubectl apply -f infra/k8s/prod/auth-depl.yaml
