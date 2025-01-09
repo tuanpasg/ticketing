@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: expiration
-          image: asia-southeast1-docker.pkg.dev/ticketing-429002/ticketing-docker-hub/expiration
+          image: asia-southeast1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/${{ secrets.GAR_REPO_ID }}/expiration
           resources:
             requests:
               memory: "500M"
