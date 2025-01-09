@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: asia-southeast1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/${{ secrets.GAR_REPO_ID }}/auth
+          image: asia-southeast1-docker.pkg.dev/ticketing-447009/ticketing-docker-hub/auth
           resources:
             requests:
               memory: "500M"
